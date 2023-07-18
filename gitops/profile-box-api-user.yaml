@@ -26,8 +26,7 @@ metadata:
   name: dev-user
 spec:
   selector:
-    matchLabels:
-      app: dev-user
+    app: dev-user
   ports:
     - protocol: TCP
       port: 8080
