@@ -1,0 +1,161 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: istio-gateway
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        number: 443
+        name: https-443
+        protocol: HTTPS
+      tls:
+        mode: SIMPLE
+        credentialName: "tls-secret"
+      hosts:
+        - "*"
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: user-vs
+spec:
+  hosts:
+    - "user.profilehub.info"
+  gateways:
+    - istio-gateway
+  http:
+    - route:
+        - destination:
+            host: api-user
+            port:
+              number: 8080
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: admin-vs
+spec:
+  hosts:
+    - "admin.profilehub.info"
+  gateways:
+    - istio-gateway
+  http:
+    - route:
+        - destination:
+            host: profile-box-api-admin
+            port:
+              number: 8080
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: front-vs
+spec:
+  hosts:
+    - "www.profilehub.info"
+  gateways:
+    - istio-gateway
+  http:
+    - route:
+        - destination:
+            host: front-svc
+            port:
+              number: 8080
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: devuser-vs
+spec:
+  hosts:
+    - "devuser.profilehub.info"
+  gateways:
+    - istio-gateway
+  http:
+    - route:
+        - destination:
+            host: dev-user
+            port:
+              number: 8080
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: devadmin-vs
+spec:
+  hosts:
+    - "devadmin.profilehub.info"
+  gateways:
+    - istio-gateway
+  http:
+    - route:
+        - destination:
+            host: dev-admin
+            port:
+              number: 8080
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: devfront-vs
+spec:
+  hosts:
+    - "devwww.profilehub.info"
+  gateways:
+    - istio-gateway
+  http:
+    - route:
+        - destination:
+            host: dev-front
+            port:
+              number: 8080
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: jenkins-vs
+spec:
+  hosts:
+    - "jenkins.profilehub.info"
+  gateways:
+    - istio-gateway
+  http:
+    - route:
+        - destination:
+            host: jenkins.devops.svc.cluster.local
+            port:
+              number: 8080
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: argocd-vs
+spec:
+  hosts:
+    - "argocd.profilehub.info"
+  gateways:
+    - istio-gateway
+  http:
+    - route:
+        - destination:
+            host: argocd-server.devops.svc.cluster.local
+            port:
+              number: 8080
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: kibana-vs
+spec:
+  hosts:
+    - "kibana.profilehub.info"
+  gateways:
+    - istio-gateway
+  http:
+    - route:
+        - destination:
+            host: kibana-kibana.devops.svc.cluster.local
+            port:
+              number: 5601
