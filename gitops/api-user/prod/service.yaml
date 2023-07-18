@@ -1,1 +1,11 @@
-
+apiVersion: v1
+kind: Service
+metadata:
+  name: profile-box-api-user
+spec:
+  selector:
+    app: profile-box-api-user
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
