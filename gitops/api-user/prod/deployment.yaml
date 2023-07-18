@@ -1,1 +1,21 @@
-
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: profile-box-api-user
+  labels:
+    app: dprofile-box-api-user
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: profile-box-api-user
+  template:
+    metadata:
+      labels:
+        app: profile-box-api-user
+    spec:
+      containers:
+      - name: profile-box-api-user
+        image: 204770130849.dkr.ecr.ap-northeast-2.amazonaws.com/profile-box-api-user:346d54eb359047a923868cbd472654867974dfcf
+      imagePullSecrets:
+      - name: ecr-secret
