@@ -1,1 +1,1 @@
-# profile-box-helm
+# profile-box-gitops
