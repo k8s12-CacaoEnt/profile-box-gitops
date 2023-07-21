@@ -5,7 +5,7 @@ metadata:
   labels:
     app: dprofile-box-api-user
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: profile-box-api-user
