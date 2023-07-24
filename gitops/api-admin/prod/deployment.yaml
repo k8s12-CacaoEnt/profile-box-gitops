@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: profile-box-api-admin
-        image: 204770130849.dkr.ecr.ap-northeast-2.amazonaws.com/profile-box-api-admin:40c65e7c7b9de49d8e7b2212deb5651ccc49dfd2
+        image: 204770130849.dkr.ecr.ap-northeast-2.amazonaws.com/profile-box-api-admin:feebfc981261f79b09d25f1be7d6d58ea717c581
       imagePullSecrets:
       - name: ecr-secret
