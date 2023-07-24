@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: profile-box-api-admin
   labels:
-    app: profile-box-api-admin
+    app: dprofile-box-api-admin
 spec:
   replicas: 3
   selector:
