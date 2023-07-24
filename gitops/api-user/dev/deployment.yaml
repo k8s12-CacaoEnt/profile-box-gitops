@@ -19,7 +19,7 @@ spec:
         image: 204770130849.dkr.ecr.ap-northeast-2.amazonaws.com/profile-box-api-user:346d54eb359047a923868cbd472654867974dfcf
         resources:
           limits:
-            cpu: "500m"
+            cpu: "1000m"
             memory: "512Mi"
           requests:
             cpu: "200m"
