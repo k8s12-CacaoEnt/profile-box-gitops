@@ -19,6 +19,23 @@ spec:
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
+  name: default-vs
+spec:
+  hosts:
+    - "profilehub.info"
+  gateways:
+    - istio-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /
+    redirect:
+      authority: devwww.profilehub.info
+      uri: "/"
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
   name: user-vs
 spec:
   hosts:
@@ -28,7 +45,7 @@ spec:
   http:
     - route:
         - destination:
-            host: api-user
+            host: profile-box-api-user.api-user.svc.cluster.local
             port:
               number: 8080
 ---
@@ -44,7 +61,7 @@ spec:
   http:
     - route:
         - destination:
-            host: profile-box-api-admin
+            host: profile-box-api-admin.api-admin.svc.cluster.local
             port:
               number: 8080
 ---
@@ -76,7 +93,7 @@ spec:
   http:
     - route:
         - destination:
-            host: dev-user
+            host: dev-profile-box-api-user.dev-api-user.svc.cluster.local
             port:
               number: 8080
 ---
@@ -159,3 +176,35 @@ spec:
             host: kibana-kibana.devops.svc.cluster.local
             port:
               number: 5601
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: grafana-vs
+spec:
+  hosts:
+    - "grafana.profilehub.info"
+  gateways:
+    - istio-gateway
+  http:
+    - route:
+        - destination:
+            host: grafana.devops.svc.cluster.local
+            port:
+              number: 80
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: kiali-vs
+spec:
+  hosts:
+    - "kiali.profilehub.info"
+  gateways:
+    - istio-gateway
+  http:
+    - route:
+        - destination:
+            host: kiali.istio-system.svc.cluster.local
+            port:
+              number: 20001
