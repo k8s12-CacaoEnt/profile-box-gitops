@@ -19,10 +19,10 @@ spec:
         image: 204770130849.dkr.ecr.ap-northeast-2.amazonaws.com/profile-box-api-admin:22c88b6f9b4b6ef6796cad18924fd77e02fba6fd
         resources:
           limits:
-            cpu: "200m"
+            cpu: "500m"
             memory: "512Mi"
           requests:
-            cpu: "100m"
+            cpu: "200m"
             memory: "256Mi"
       imagePullSecrets:
       - name: ecr-secret
