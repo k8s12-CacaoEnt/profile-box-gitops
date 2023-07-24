@@ -17,5 +17,12 @@ spec:
       containers:
       - name: profile-box-api-user
         image: 204770130849.dkr.ecr.ap-northeast-2.amazonaws.com/profile-box-api-user:f6dc51f9ad65c2de1efe58c24ced8e9bf7d78dc9
+        resources:
+          limits:
+            cpu: "200m"
+            memory: "512Mi"
+          requests:
+            cpu: "100m"
+            memory: "256Mi"
       imagePullSecrets:
       - name: ecr-secret
