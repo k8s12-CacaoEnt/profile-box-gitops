@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dev-front
+spec:
+  selector:
+    app: demo-frontend
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 80 # ngix app port
