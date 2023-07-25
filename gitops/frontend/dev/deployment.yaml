@@ -13,10 +13,10 @@ spec:
         app: demo-frontend
     spec:
       containers:
-        - name: demo-frontend
-          image: 204770130849.dkr.ecr.ap-northeast-2.amazonaws.com/profile-box-front:8bff720c77e91d3684f547dd68206320f5e44dda
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 80
+      - name: demo-frontend
+        image: 204770130849.dkr.ecr.ap-northeast-2.amazonaws.com/profile-box-front:8bff720c77e91d3684f547dd68206320f5e44dda
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
       imagePullSecrets:
       - name: ecr-secret
